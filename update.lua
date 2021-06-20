@@ -25,6 +25,21 @@ function setFile( name, content )
     file.write(content)
     file.close()
 end
+
+-- Send File
+function sendFile( name, content, to )
+    print("Sending File: "..name)
+    local data = {
+        id = "alpha",
+        to = "epsilon",
+        request = "update",
+        data = {
+            name = name,
+            content = content
+        }
+    }
+    rednet.broadcast(textutils.serialize(data), "vampireIncProtocol")
+end
  
 -- Get Directory Contents
 function getGithubContents(branch)
@@ -57,8 +72,14 @@ function main()
     if tArgs[1] == "alpha" then
         shell.run("rm *")
     end 
-    for i,file in ipairs(data) do
-        setFile(file['name'], file['content'])
+    if tArgs[1] == "alpha" then
+        for i,file in ipairs(data) do
+            setFile(file['name'], file['content'])
+        end
+    else
+        for i,file in ipairs(data) do
+            sendFile(file['name'], file['content'], tArgs[1])
+        end
     end
     print("Update completed")
     sleep(5)

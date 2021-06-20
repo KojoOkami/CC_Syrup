@@ -1,3 +1,3 @@
 rednet.open("back")
-rednet.host("alphaProtocol","nekoServer")
+rednet.host("vampireIncProtocol","alpha")
 shell.run("test")
