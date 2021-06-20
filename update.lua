@@ -61,7 +61,8 @@ function main()
         setFile(file['name'], file['content'])
     end
     print("Update completed")
-    sleep(2,5)
+    sleep(5)
+    os.reboot()
 end
  
 if not http then
