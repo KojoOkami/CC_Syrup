@@ -21,8 +21,8 @@ end
 -- Set File
 function setFile( name, content )
     print("Downloading File: "..name)
-    local file = fs.open('',"w")
-    file.write(content.readAll())
+    local file = fs.open(name,"w")
+    file.write(content)
     file.close()
 end
  
